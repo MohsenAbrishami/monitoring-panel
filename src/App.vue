@@ -1,9 +1,9 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import MonitoringPanel from './components/MonitoringPanel.vue';
 </script>
 
 <template class="bg-gray-500">
-  <HelloWorld />
+  <MonitoringPanel />
 </template>
 
 <style scoped>
