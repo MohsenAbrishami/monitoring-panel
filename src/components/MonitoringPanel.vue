@@ -3,5 +3,5 @@ import Status from './Status.vue'
 </script>
 
 <template>
-  <Status />
+    <Status />
 </template>
