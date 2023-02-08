@@ -1,11 +1,11 @@
 <template>
     <div class="w-9/12 mx-auto mt-8 bg-white rounded-lg p-2">
-        <span class="pl-3 font-bold inline-block">Monitoring Overview:</span>
+        <span class="pl-3 pt-2 font-bold inline-block">Monitoring Overview:</span>
         <a href="">
             <img src="public/refresh.png" class="w-10 inline-block float-right mr-3">
         </a>
-        <div class="flex justify-center pt-10 pb-4">
-            <div class="h-28 w-64 bg-red-100 ml-3 p-2 inline-block rounded-lg">
+        <div class="w-full flex justify-center py-5">
+            <div class="h-28 w-2/12 bg-red-100 p-2  rounded-lg">
                 <span>Cpu Usage</span>
                 <div class="pt-4">
                     <span class="inline-block">10%</span>
@@ -16,7 +16,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 w-64 bg-green-100 ml-5 p-2 inline-block rounded-lg">
+            <div class="h-28 w-2/12 bg-green-100 ml-4 p-2 rounded-lg">
                 <span>Memory Usage</span>
                 <div class="pt-4">
                     <span class="inline-block">10%</span>
@@ -27,8 +27,8 @@
                     >
                 </div>
             </div>
-            <div class="h-28 w-64 bg-green-100 ml-5 p-2 inline-block rounded-lg">
-                <span>Hard Disk Free Space</span>
+            <div class="h-28 w-2/12 bg-green-100 ml-4 p-2 rounded-lg">
+                <span>Hard Disk Space</span>
                 <div class="pt-4">
                     <span class="inline-block">10%</span>
                     <img
@@ -38,7 +38,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 w-64 bg-red-100 ml-5 p-2 inline-block rounded-lg">
+            <div class="h-28 w-2/12 bg-red-100 ml-4 p-2 rounded-lg">
                 <span>Web server status</span>
                 <div class="pt-4">
                     <span class="inline-block">10%</span>
@@ -49,8 +49,8 @@
                     >
                 </div>
             </div>
-            <div class="h-28 w-64 bg-green-100 ml-5 mr-2 p-2 inline-block rounded-lg">
-                <span>Network connection</span>
+            <div class="h-28 w-2/12 bg-green-100 ml-4 mr-2 p-2 rounded-lg">
+                <span>Network Status</span>
                 <div class="pt-4">
                     <span class="inline-block">10%</span>
                     <img
