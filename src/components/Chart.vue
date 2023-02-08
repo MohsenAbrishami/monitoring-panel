@@ -50,7 +50,7 @@ export default {
 </script>
 
 <template>
-    <div class="w-9/12 h-80 bg-white mt-5 mx-auto p-5">
+    <div class="w-9/12 h-80 bg-white mt-5 mx-auto p-5 rounded-lg">
         <Line :data="data" :options="options" />
     </div>
 </template>
