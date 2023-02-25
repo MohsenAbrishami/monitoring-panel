@@ -1,5 +1,4 @@
 <script setup>
-
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,8 +10,6 @@ import {
     Legend
 } from 'chart.js'
 import { Line } from 'vue-chartjs'
-import { onMounted } from 'vue'
-import axios from 'axios'
 
 ChartJS.register(
     CategoryScale,
@@ -39,20 +36,6 @@ const options = {
     responsive: true,
     maintainAspectRatio: false,
 }
-
-onMounted(() => {
-    getCurrentStatus()
-})
-
-function getCurrentStatus() {
-    axios.get('http://localhost:8000/api/monitor/current')
-        .then((value) => {
-            console.log(value)
-        }).catch(() => {
-            alert('fail')
-        })
-}
-
 </script>
 
 <template>
