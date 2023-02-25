@@ -1,9 +1,11 @@
 <template>
     <div class="w-9/12 mx-auto mt-5 bg-white rounded-lg p-2">
         <span class="pl-3 pt-2 font-bold inline-block">Monitoring Overview:</span>
-        <a href="">
-            <img src="public/refresh.png" class="w-10 inline-block float-right mr-3">
-        </a>
+        <img
+            src="public/refresh.png"
+            class="w-10 inline-block float-right mr-3 cursor-pointer"
+            @click.prevent="getCurrentStatus()"
+        >
         <div class="w-full flex justify-center py-5">
             <div class="h-28 w-2/12 bg-red-100 p-2  rounded-lg">
                 <span>Cpu Usage</span>
