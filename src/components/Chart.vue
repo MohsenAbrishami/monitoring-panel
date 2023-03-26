@@ -75,57 +75,44 @@ const resourceLog = reactive({
 })
 
 function getResourceLogHistories() {
-    axios.get('http://localhost:8000/monitor/history/2020-01-01/2023-12-12')
+    axios.get('http://localhost:8000/monitor/history/2023-03-14/2023-03-26')
         .then((value) => {
             resourceLog.history = value.data
-            resourceLog.history[0].forEach((element) => {
-                console.info(element.id)
-            })
+            generateChart()
         })
 }
 
 function generateChart() {
     data.value = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: resourceLog.history?.labels,
         datasets: [
             {
                 label: 'CPU',
                 backgroundColor: '#60a5fa',
-                data: randomList(),
+                data: resourceLog.history?.resource_log_count.cpu,
             },
             {
                 label: 'Memory',
                 backgroundColor: '#4ade80',
-                data: randomList(),
+                data: resourceLog.history?.resource_log_count.memory,
             },
             {
                 label: 'hdd',
                 backgroundColor: '#f87171',
-                data: randomList(),
+                data: resourceLog.history?.resource_log_count.hard_disk,
             },
             {
                 label: 'web_server',
                 backgroundColor: '#34d399',
-                data: randomList(),
+                data: resourceLog.history?.resource_log_count.network,
             },
             {
                 label: 'network',
                 backgroundColor: '#c084fc',
-                data: randomList(),
+                data: resourceLog.history?.resource_log_count.web_server,
             },
         ],
     }
-}
-
-function randomList() {
-    const newArray = []
-
-    for (let i = 0; i < 10; i++) {
-        const randomValue = Math.floor(Math.random() * 10)
-        newArray.push(randomValue)
-    }
-
-    return newArray
 }
 
 generateChart()
