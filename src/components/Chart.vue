@@ -1,5 +1,11 @@
 <template>
     <div class="w-9/12 bg-white my-5 mx-auto p-5 rounded-lg">
+        <VueDatePicker
+            v-model="date"
+            range
+            auto-apply
+            :enable-time-picker="false"
+        />
         <div class="w-2/12 inline-block float-left pt-16">
             <div class="block pt-2">
                 <input
@@ -62,6 +68,8 @@ import {
 import { Line } from 'vue-chartjs'
 import { onMounted, reactive, ref } from 'vue'
 import axios from 'axios'
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 ChartJS.register(
     CategoryScale,
@@ -74,6 +82,8 @@ ChartJS.register(
 )
 
 const data = ref({})
+
+const date = ref()
 
 const options = {
     responsive: true,
