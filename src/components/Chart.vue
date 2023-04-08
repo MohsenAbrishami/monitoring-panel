@@ -5,6 +5,7 @@
             range
             auto-apply
             :enable-time-picker="false"
+            :format="'yyyy/MM/dd'"
         />
         <div class="w-2/12 inline-block float-left pt-16">
             <div class="block pt-2">
