@@ -159,9 +159,16 @@ function generateChart(key) {
     }
 }
 
-generateChart()
+function setInitializeDate() {
+    const endDate = new Date()
+    const startDate = new Date(new Date().setDate(endDate.getDate() - 7))
+    date.value = [startDate, endDate]
+}
 
 onMounted(() => {
     getResourceLogHistories()
+    setInitializeDate()
 })
+
+generateChart()
 </script>
