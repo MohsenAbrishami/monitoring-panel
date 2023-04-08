@@ -1,13 +1,18 @@
 <template>
     <div class="w-9/12 bg-white my-5 mx-auto p-5 rounded-lg">
-        <VueDatePicker
-            v-model="date"
-            range
-            auto-apply
-            :enable-time-picker="false"
-            :format="'yyyy/MM/dd'"
-            @update:model-value="selectDate"
-        />
+        <div class="py-4">
+            <span class="inline text-gray-500">Select history range:</span>
+            <div class="w-3/12 inline-block ml-3">
+                <VueDatePicker
+                    v-model="date"
+                    range
+                    auto-apply
+                    :enable-time-picker="false"
+                    :format="'yyyy/MM/dd'"
+                    @update:model-value="selectDate"
+                />
+            </div>
+        </div>
         <div class="w-2/12 inline-block float-left pt-16">
             <div class="block pt-2">
                 <input
