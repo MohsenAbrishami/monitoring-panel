@@ -6,6 +6,7 @@
             auto-apply
             :enable-time-picker="false"
             :format="'yyyy/MM/dd'"
+            @update:model-value="selectDate"
         />
         <div class="w-2/12 inline-block float-left pt-16">
             <div class="block pt-2">
@@ -172,4 +173,9 @@ onMounted(() => {
 })
 
 generateChart()
+
+const selectDate = (modelData) => {
+    date.value = modelData
+    getResourceLogHistories()
+}
 </script>
