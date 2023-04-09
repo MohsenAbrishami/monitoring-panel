@@ -1,5 +1,5 @@
 <template>
-    <div class="w-9/12 mx-auto mt-5 bg-white rounded-lg p-2">
+    <div class="w-9/12 mx-auto mt-6 bg-white rounded-lg p-2">
         <span class="pl-3 pt-2 font-bold inline-block">Monitoring Overview:</span>
         <img
             src="public/refresh.png"

@@ -1,5 +1,18 @@
 <template>
-    <div class="w-9/12 bg-white my-5 mx-auto p-5 rounded-lg">
+    <div class="w-9/12 bg-white my-6 mx-auto p-5 rounded-lg">
+        <div class="py-4">
+            <span class="inline text-gray-500">Select history range:</span>
+            <div class="w-3/12 inline-block ml-3">
+                <VueDatePicker
+                    v-model="date"
+                    range
+                    auto-apply
+                    :enable-time-picker="false"
+                    :format="'yyyy/MM/dd'"
+                    @update:model-value="selectDate"
+                />
+            </div>
+        </div>
         <div class="w-2/12 inline-block float-left pt-16">
             <div class="block pt-2">
                 <input
@@ -7,7 +20,7 @@
                     type="checkbox"
                     @click="generateChart('cpu')"
                 >
-                <span class="text-blue-500 font-bold mx-4">CPU</span>
+                <span class="text-green-500 font-bold mx-4">CPU</span>
             </div>
             <div class="block pt-2">
                 <input
@@ -27,22 +40,22 @@
             </div>
             <div class="block pt-2">
                 <input
-                    v-model="resources.webServer"
-                    type="checkbox"
-                    @click="generateChart('webServer')"
-                >
-                <span class="text-emerald-400 font-bold mx-4">Web Server</span>
-            </div>
-            <div class="block pt-2">
-                <input
                     v-model="resources.network"
                     type="checkbox"
                     @click="generateChart('network')"
                 >
                 <span class="text-purple-400 font-bold mx-4">Network</span>
             </div>
+            <div class="block pt-2">
+                <input
+                    v-model="resources.webServer"
+                    type="checkbox"
+                    @click="generateChart('webServer')"
+                >
+                <span class="text-emerald-400 font-bold mx-4">Web Server</span>
+            </div>
         </div>
-        <div class="w-10/12 inline-block h-80">
+        <div class="w-10/12 inline-block h-96">
             <Line :data="data" :options="options" />
         </div>
     </div>
@@ -62,6 +75,8 @@ import {
 import { Line } from 'vue-chartjs'
 import { onMounted, reactive, ref } from 'vue'
 import axios from 'axios'
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 ChartJS.register(
     CategoryScale,
@@ -74,6 +89,8 @@ ChartJS.register(
 )
 
 const data = ref({})
+
+const date = ref()
 
 const options = {
     responsive: true,
@@ -88,12 +105,14 @@ const resources = reactive({
     cpu: true,
     memory: true,
     hardDisk: true,
-    webServer: true,
     network: true,
+    webServer: true,
 })
 
 function getResourceLogHistories() {
-    axios.get('http://localhost:8000/monitor/history/2023-03-14/2023-03-26')
+    const fromDate = date.value[0].toISOString().slice(0, 10)
+    const toDate = date.value[1].toISOString().slice(0, 10)
+    axios.get(`http://localhost:8000/monitor/history/${fromDate}/${toDate}`)
         .then((value) => {
             resourceLog.history = value.data
             generateChart()
@@ -126,17 +145,9 @@ function generateChart(key) {
 
     if (resources.hardDisk) {
         data.value.datasets.push({
-            label: 'hdd',
+            label: 'HDD',
             backgroundColor: '#f87171',
             data: resourceLog.history?.resource_log_count.hard_disk,
-        })
-    }
-
-    if (resources.webServer) {
-        data.value.datasets.push({
-            label: 'web_server',
-            backgroundColor: '#34d399',
-            data: resourceLog.history?.resource_log_count.network,
         })
     }
 
@@ -144,14 +155,34 @@ function generateChart(key) {
         data.value.datasets.push({
             label: 'network',
             backgroundColor: '#c084fc',
+            data: resourceLog.history?.resource_log_count.network,
+        })
+    }
+
+    if (resources.webServer) {
+        data.value.datasets.push({
+            label: 'web server',
+            backgroundColor: '#34d399',
             data: resourceLog.history?.resource_log_count.web_server,
         })
     }
 }
 
-generateChart()
+function setInitializeDate() {
+    const endDate = new Date()
+    const startDate = new Date(new Date().setDate(endDate.getDate() - 7))
+    date.value = [startDate, endDate]
+}
 
 onMounted(() => {
+    setInitializeDate()
     getResourceLogHistories()
 })
+
+generateChart()
+
+const selectDate = (modelData) => {
+    date.value = modelData
+    getResourceLogHistories()
+}
 </script>
