@@ -1,5 +1,5 @@
 <template>
-    <div class="w-9/12 bg-white my-5 mx-auto p-5 rounded-lg">
+    <div class="w-9/12 bg-white my-6 mx-auto p-5 rounded-lg">
         <div class="py-4">
             <span class="inline text-gray-500">Select history range:</span>
             <div class="w-3/12 inline-block ml-3">
@@ -20,7 +20,7 @@
                     type="checkbox"
                     @click="generateChart('cpu')"
                 >
-                <span class="text-blue-500 font-bold mx-4">CPU</span>
+                <span class="text-green-500 font-bold mx-4">CPU</span>
             </div>
             <div class="block pt-2">
                 <input
@@ -40,22 +40,22 @@
             </div>
             <div class="block pt-2">
                 <input
-                    v-model="resources.webServer"
-                    type="checkbox"
-                    @click="generateChart('webServer')"
-                >
-                <span class="text-emerald-400 font-bold mx-4">Web Server</span>
-            </div>
-            <div class="block pt-2">
-                <input
                     v-model="resources.network"
                     type="checkbox"
                     @click="generateChart('network')"
                 >
                 <span class="text-purple-400 font-bold mx-4">Network</span>
             </div>
+            <div class="block pt-2">
+                <input
+                    v-model="resources.webServer"
+                    type="checkbox"
+                    @click="generateChart('webServer')"
+                >
+                <span class="text-emerald-400 font-bold mx-4">Web Server</span>
+            </div>
         </div>
-        <div class="w-10/12 inline-block h-80">
+        <div class="w-10/12 inline-block h-96">
             <Line :data="data" :options="options" />
         </div>
     </div>
@@ -105,8 +105,8 @@ const resources = reactive({
     cpu: true,
     memory: true,
     hardDisk: true,
-    webServer: true,
     network: true,
+    webServer: true,
 })
 
 function getResourceLogHistories() {
@@ -145,17 +145,9 @@ function generateChart(key) {
 
     if (resources.hardDisk) {
         data.value.datasets.push({
-            label: 'hdd',
+            label: 'HDD',
             backgroundColor: '#f87171',
             data: resourceLog.history?.resource_log_count.hard_disk,
-        })
-    }
-
-    if (resources.webServer) {
-        data.value.datasets.push({
-            label: 'web_server',
-            backgroundColor: '#34d399',
-            data: resourceLog.history?.resource_log_count.network,
         })
     }
 
@@ -163,6 +155,14 @@ function generateChart(key) {
         data.value.datasets.push({
             label: 'network',
             backgroundColor: '#c084fc',
+            data: resourceLog.history?.resource_log_count.network,
+        })
+    }
+
+    if (resources.webServer) {
+        data.value.datasets.push({
+            label: 'web server',
+            backgroundColor: '#34d399',
             data: resourceLog.history?.resource_log_count.web_server,
         })
     }
