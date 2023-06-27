@@ -2,7 +2,7 @@
     <div class="w-9/12 mx-auto mt-6 bg-white rounded-lg p-2">
         <span class="pl-3 pt-2 font-bold inline-block">Monitoring Overview:</span>
         <img
-            src="public/refresh.png"
+            src="../../public/refresh.png"
             class="w-10 inline-block float-right mr-3 cursor-pointer"
             @click.prevent="getCurrentStatus()"
         >
@@ -12,9 +12,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.cpu }}</span>
                     <img
-                        class="inline-block float-right"
-                        src="public/cpu-icon.png"
-                        width="50px"
+                        class="inline-block float-right w-12"
+                        src="../../public/cpu-icon.png"
                     >
                 </div>
             </div>
@@ -23,9 +22,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.memory }}</span>
                     <img
-                        class="inline-block float-right"
-                        src="public/ram-icon.png"
-                        width="50px"
+                        class="inline-block float-right w-12"
+                        src="../../public/ram-icon.png"
                     >
                 </div>
             </div>
@@ -34,9 +32,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.hardDisk }}</span>
                     <img
-                        class="inline-block float-right"
-                        src="public/harddisk-icon.png"
-                        width="50px"
+                        class="inline-block float-right w-12"
+                        src="../../public/harddisk-icon.png"
                     >
                 </div>
             </div>
@@ -45,9 +42,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.webServer }}</span>
                     <img
-                        class="inline-block float-right"
-                        src="public/web-server-icon.png"
-                        width="50px"
+                        class="inline-block float-right w-12"
+                        src="../../public/web-server-icon.png"
                     >
                 </div>
             </div>
@@ -56,9 +52,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.network ? 'Connected' : 'Disconnected' }}</span>
                     <img
-                        class="inline-block float-right"
-                        src="public/network-icon.png"
-                        width="50px"
+                        class="inline-block float-right w-12"
+                        src="../../public/network-icon.png"
                     >
                 </div>
             </div>
