@@ -114,7 +114,7 @@ const resources = reactive({
 function getResourceLogHistories() {
     const fromDate = date.value[0].toISOString().slice(0, 10)
     const toDate = date.value[1].toISOString().slice(0, 10)
-    axios.get(`http://localhost:8000/monitor/history/${fromDate}/${toDate}`)
+    axios.get(`/monitor/history/${fromDate}/${toDate}`)
         .then((value) => {
             resourceLog.history = value.data
             generateChart()

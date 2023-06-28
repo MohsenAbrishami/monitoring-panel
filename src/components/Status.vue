@@ -78,7 +78,7 @@ onMounted(() => {
 })
 
 function getCurrentStatus() {
-    axios.get('http://localhost:8000/monitor/current')
+    axios.get('/monitor/current')
         .then((value) => {
             statuses.cpu = value.data.cpu
             statuses.hardDisk = value.data.hard_disk
