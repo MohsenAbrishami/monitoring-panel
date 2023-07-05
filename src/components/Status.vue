@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive } from 'vue'
+import { onBeforeUnmount, onMounted, reactive } from 'vue'
 import axios from 'axios'
 
 const statuses = reactive({
@@ -76,6 +76,14 @@ const statuses = reactive({
 onMounted(() => {
     getCurrentStatus()
 })
+
+onBeforeUnmount(() => {
+    clearInterval(statusChecker)
+})
+
+const statusChecker = setInterval(() => {
+    getCurrentStatus()
+}, 180000)
 
 function getCurrentStatus() {
     axios.get('/monitor/current')
