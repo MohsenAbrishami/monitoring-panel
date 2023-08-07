@@ -3,7 +3,10 @@
         <div>
             <span class="py-4 font-bold">Server Failures Histories</span>
             <div class="tooltip">
-                <img class="w-12 inline-block" src="../../public/guide-icon.png">
+                <img
+                    class="w-12 inline-block"
+                    src="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/guide-icon.png"
+                >
                 <span class="tooltiptext">
                     In the graph below, you can see the number of times CPU, RAM,
                     and hard drive usage exceeds the limit, as well as
