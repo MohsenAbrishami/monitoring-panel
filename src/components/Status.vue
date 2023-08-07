@@ -1,6 +1,6 @@
 <template>
-    <div class="container w-9/12 mx-auto mt-6 bg-white rounded-lg p-2">
-        <span class="pl-3 py-4 font-bold inline-block">Monitoring Overview:</span>
+    <div class="container w-9/12 mx-auto mt-12 bg-white rounded-lg p-2">
+        <span class="pl-3 py-4 font-bold inline-block">Current server status</span>
         <img
             src="../../public/refresh.png"
             class="w-10 inline-block float-right mr-3 cursor-pointer"
