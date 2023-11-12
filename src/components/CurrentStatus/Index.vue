@@ -6,7 +6,9 @@
             class="w-10 inline-block float-right mr-3 cursor-pointer"
             @click.prevent="getCurrentStatus()"
         >
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+
+        <Loading v-if="isLoading" />
+        <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
             <StatusItem
                 title="Cpu Usage"
                 :result="statuses.memory"
@@ -42,9 +44,12 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, reactive } from 'vue'
+import {
+    onBeforeUnmount, onMounted, reactive, ref
+} from 'vue'
 import axios from 'axios'
 import StatusItem from './StatusItem.vue'
+import Loading from '../Loading.vue'
 
 const statuses = reactive({
     cpu: 'Loading..',
@@ -53,6 +58,8 @@ const statuses = reactive({
     network: 'Loading..',
     webServer: 'Loading..',
 })
+
+const isLoading = ref(false)
 
 onMounted(() => {
     getCurrentStatus()
@@ -67,6 +74,7 @@ const statusChecker = setInterval(() => {
 }, 180000)
 
 function getCurrentStatus() {
+    isLoading.value = true
     axios.get('monitor/current')
         .then((value) => {
             statuses.cpu = `${Number(value.data.cpu).toFixed(2)} %`
@@ -74,6 +82,7 @@ function getCurrentStatus() {
             statuses.memory = `${Number(value.data.memory).toFixed(2)} %`
             statuses.network = value.data.network
             statuses.webServer = value.data.web_server
+            isLoading.value = false
         })
 }
 </script>
