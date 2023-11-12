@@ -7,7 +7,7 @@
             @click.prevent="getCurrentStatus()"
         >
 
-        <div v-if="isLoading" class="loader" />
+        <Loading v-if="isLoading" />
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
             <StatusItem
                 title="Cpu Usage"
@@ -49,6 +49,7 @@ import {
 } from 'vue'
 import axios from 'axios'
 import StatusItem from './StatusItem.vue'
+import Loading from '../Loading.vue'
 
 const statuses = reactive({
     cpu: 'Loading..',
@@ -85,30 +86,3 @@ function getCurrentStatus() {
         })
 }
 </script>
-
-<style scoped>
-.loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
-
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
