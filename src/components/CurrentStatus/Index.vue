@@ -52,11 +52,11 @@ import StatusItem from './StatusItem.vue'
 import Loading from '../Loading.vue'
 
 const statuses = reactive({
-    cpu: 'Loading..',
-    hardDisk: 'Loading..',
-    memory: 'Loading..',
-    network: 'Loading..',
-    webServer: 'Loading..',
+    cpu: null,
+    hardDisk: null,
+    memory: null,
+    network: null,
+    webServer: null,
 })
 
 const isLoading = ref(false)
