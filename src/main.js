@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
-import Layout from './layout/Index.vue'
 
-createApp(App).component('Layout', Layout).mount('#app')
+createApp(App).mount('#app')
